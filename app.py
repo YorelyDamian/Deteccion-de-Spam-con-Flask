@@ -19,13 +19,11 @@ def bd():
 @app.route('/')
 def index():
     cursor = conexion.connection.cursor()
-    sql = "SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly'"
-    #sql1 = "SELECT class FROM prueba WHERE class = 'normal'"
-    #sql2 = "SELECT class FROM prueba WHERE class = 'anomaly'"
+    sql = "SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly' LIMIT 10"
     cursor.execute(sql)
     datos = cursor.fetchall()
     print(datos)
-    return render_template('index.html')
+    return render_template('index.php')
 
 
 @app.route('/grafica')

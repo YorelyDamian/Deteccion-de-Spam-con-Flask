@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 data = pd.read_csv(
-    'D:\\Yorely\Windows\\Octavo Semestre\\Zamora\\Inteligencia Artificial\\proyecto_Spam\\normal.csv', delimiter=',')
+    'D:\\Yorely\Windows\\Octavo Semestre\\Zamora\\Inteligencia Artificial\\proyecto_Spam\\ArchivosCSV\\normal.csv', delimiter=',')
 data.head()
 w = data['id']
 x = data['src_bytes']
@@ -30,4 +30,5 @@ print('classA:', divz)
 porcentajes = [divw, divx, divy, divz]
 nombres = ["Duration", "src_Bytes", "Spam", "Normal"]
 plt.pie(porcentajes, labels=nombres)
+
 plt.show()
