@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 data = pd.read_csv(
-    'D:\\Yorely\Windows\\Octavo Semestre\\Zamora\\Inteligencia Artificial\\proyecto_Spam\\ArchivosCSV\\normal.csv', delimiter=',')
+    'D:\\Yorely\Windows\\Octavo Semestre\\Zamora\\Inteligencia Artificial\\proyecto_Spam\\src\\ArchivosCSV\\normal.csv', delimiter=',')
 data.head()
 
 y = data['classN']
