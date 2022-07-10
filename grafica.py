@@ -24,8 +24,8 @@ divz = sumz / can * 100
 
 print('duration:', divw)
 print('src_bytes:', divx)
-print('classN:', divy)
-print('classA:', divz)
+print('classN:', sumy)
+print('classA:', sumz)
 
 porcentajes = [divw, divx, divy, divz]
 nombres = ["Duration", "src_Bytes", "Spam", "Normal"]
