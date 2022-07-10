@@ -1,29 +1,35 @@
-from distutils.command.config import config
 from flask import Flask, render_template
 from flask_mysqldb import MySQL
-from config import config
-
 
 app = Flask(__name__)
+# MySql Connection
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Y121200gm'
+app.config['MYSQL_DB'] = 'machineglearning'
 conexion = MySQL(app)
-
-
-@app.route('/conexion')
-def bd():
-    try:
-        return "Datos Listos"
-    except Exception as ex:
-        return "Error"
 
 
 @app.route('/')
 def index():
-    cursor = conexion.connection.cursor()
-    sql = "SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly' LIMIT 10"
-    cursor.execute(sql)
-    datos = cursor.fetchall()
-    print(datos)
-    return render_template('index.php')
+    cur = conexion.connection.cursor()
+    cur.execute(
+        "SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly' LIMIT 10")
+    data = cur.fetchall()
+    return render_template('index.html', correos=data)
+
+
+@app.route('/conexion')
+def bd():
+    #cursor = conexion.connection.cursor()
+    #sql = "SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly' LIMIT 10"
+    # cursor.execute(sql)
+    #datos = cursor.fetchall()
+    # print(datos)
+    try:
+        return "Datos Listos"
+    except Exception as ex:
+        return "Error"
 
 
 @app.route('/grafica')
@@ -33,5 +39,4 @@ def grafica():
 
 
 if __name__ == '__main__':
-    app.config.from_object(config['development'])
     app.run()
