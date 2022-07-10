@@ -3,7 +3,6 @@ from flask_mysqldb import MySQL
 import pandas as pd
 import matplotlib.pyplot as plt
 import io
-from flask import Response
 import numpy as np
 from sklearn import linear_model
 from sklearn.model_selection import train_test_split
@@ -53,21 +52,17 @@ def prediccion():
     return render_template('index.html', prediccion=f'La predicción es: {p_s}', num_correos=f'{correos}')
 
 
-@app.route('/grafica', methods=['POST'])
+@app.route('/grafica')
 def grafica():
-    x_values = dataset['class'].unique()
-    y_values = dataset['class'].value_counts().tolist()
-    plt.bar(x_values, y_values)
-    plt.title('Detección de SPAM')
-    ax = plt.subplot()
-    ax.set_xticks(x_values)
-    ax.set_xticklabels(x_values)
-    ax.set_xlabel('Tipo de correo')
-    ax.set_ylabel('Cantidad de correos')
-    output = io.BytesIO()
-    plt.legend()
-    plt.savefig(output, format='png')
-    return Response(output.getvalue(), mimetype='image/png')
+    cur = conexion.connection.cursor()
+    curs = conexion.connection.cursor()
+    cur.execute(
+        "SELECT ROUND((((SELECT COUNT(*) FROM prueba WHERE class='anomaly')*100)/count(*)),2)FROM prueba ;")
+    curs.execute(
+        "SELECT ROUND((((SELECT COUNT(*) FROM prueba WHERE class='normal')*100)/count(*)),2)FROM prueba ;")
+    dataA = cur.fetchall()
+    dataN = curs.fetchall()
+    return render_template('index.html', spam=dataA, normal=dataN)
 
 
 if __name__ == '__main__':
