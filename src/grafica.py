@@ -24,7 +24,7 @@ print('classN:', sumy)
 print('classA:', sumz)
 
 porcentajes = [divy, divz]
-nombres = ["Spam", "Normal"]
-plt.pie(porcentajes, labels=nombres)
+nombre = ["Spam", "Normal"]
+plt.pie(porcentajes, labels=nombre)
 
 plt.show()
