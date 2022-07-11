@@ -23,46 +23,7 @@
 </head>
 
 <body>
-    <!--SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly'"!-->
-    <nav id="tablaRegistros" class='p-auto margin-top: 100px;'>
-        <div class="row d-flex flex-wrap">
-            <div class="card" id='cajitaProducto'>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">Duration</th>
-                                <th scope="col">Protocol_Type</th>
-                                <th scope="col">Service</th>
-                                <th scope="col">Flag</th>
-                                <th scope="col">src_Bytes</th>
-                                <th scope="col">Class</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--!-->
-                            {% for correo in correos %}
-                            <tr>
-                                <td>{{ correo.0 }}</td>
-                                <td>{{ correo.1 }}</td>
-                                <td>{{ correo.2 }}</td>
-                                <td>{{ correo.3 }}</td>
-                                <td>{{ correo.4 }}</td>
-                                <td>{{ correo.5 }}</td>
-                                <td>{{ correo.6 }}</td>
-                            </tr>
-
-                            {% endfor %}
-
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!--GRAFICA-->
+    <!--GRAFICA-->
     </nav>
 
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>

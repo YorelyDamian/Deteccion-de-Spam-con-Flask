@@ -14,22 +14,10 @@ app = Flask(__name__)
 url_datos = 'https://raw.githubusercontent.com/YorelyDamian/DatosCSV/main/prueba.csv'
 dataset = pd.read_csv(url_datos)
 
-# MySql Connection
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Y121200gm'
-app.config['MYSQL_DB'] = 'machineglearning'
-conexion = MySQL(app)
-
 
 @app.route('/')
 def index():
-
-    cur = conexion.connection.cursor()
-    cur.execute(
-        "SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly' LIMIT 10")
-    data = cur.fetchall()
-    return render_template('index.html', correos=data)
+    return render_template('index.html')
 
 
 @app.route("/prediccion", methods=['POST'])
