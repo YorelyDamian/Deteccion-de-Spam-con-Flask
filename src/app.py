@@ -24,6 +24,7 @@ conexion = MySQL(app)
 
 @app.route('/')
 def index():
+
     cur = conexion.connection.cursor()
     cur.execute(
         "SELECT id, duration, protocol_type, service, flag, src_bytes, class FROM prueba WHERE class = 'anomaly' LIMIT 10")
